@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.ViewGroup
+import android.view.View
 import com.example.mymenu.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
 
@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         private val ID_BOTONRADIO_1 = Menu.FIRST + 1
         private val ID_BOTONRADIO_2 = Menu.FIRST + 2
         private val ID_BOTONRADIO_3 = Menu.FIRST + 3
+        private val ELEMENTOSUBMENU = Menu.FIRST + 4
         private var cont = 0
     }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,12 +30,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         super.onCreateOptionsMenu(menu)
         //poner interrogaciones cerradas detras de menu para que no de error
-        menu?.add(Menu.NONE, ID_ELEMENTO_CHECKBOX, Menu.NONE, "CheckBox")?.setCheckable(true)
-        menu?.add(ID_GROUP_BR, ID_BOTONRADIO_1, Menu.NONE, "Opcion 1")
-        menu?.add(ID_GROUP_BR, ID_BOTONRADIO_2, Menu.NONE, "Opcion 2")
-        menu?.add(ID_GROUP_BR, ID_BOTONRADIO_3, Menu.NONE, "Opcion 3")
-            ?.setChecked(true)
-        menu?.setGroupCheckable(ID_GROUP_BR, true,true)
+//        menu?.add(Menu.NONE, ID_ELEMENTO_CHECKBOX, Menu.NONE, "CheckBox")?.setCheckable(true)
+//        menu?.add(ID_GROUP_BR, ID_BOTONRADIO_1, Menu.NONE, "Opcion 1")
+//        menu?.add(ID_GROUP_BR, ID_BOTONRADIO_2, Menu.NONE, "Opcion 2")
+//        menu?.add(ID_GROUP_BR, ID_BOTONRADIO_3, Menu.NONE, "Opcion 3")
+//            ?.setChecked(true)
+//        val sub = menu?.addSubMenu(0,0, Menu.NONE, "Titulo submenú")
+//        val elementoSubMenu = sub?.add(0, ELEMENTOSUBMENU, Menu.NONE, "Elemento submenú")
+        //El segundo cero se refiere al identificador del item y el primero se refiere al identificador del grupo
+//        menu?.setGroupCheckable(ID_GROUP_BR, true,true)
+        menuInflater.inflate(R.menu.custom_menu, menu)
 
         return true
     }
@@ -62,10 +67,17 @@ class MainActivity : AppCompatActivity() {
                 return true}
             ID_BOTONRADIO_3 -> {Snackbar.make(binding.root, "Opción 3 seleccionada", Snackbar.LENGTH_LONG).show()
 
+                return true}
+            ELEMENTOSUBMENU -> {Snackbar.make(binding.root, "Elemento seleccionado", Snackbar.LENGTH_LONG).show()
+
                 return true}//Hay que usar llaves cuando se quieran introducir varias sentencias
         // y usarlas como bloque para lo que se le pida al programa
         }
         return false
+    }
+
+    fun onclick(view: View){
+        Snackbar.make(view, "Opción seleccionada", Snackbar.LENGTH_LONG).show()
     }
 
 }

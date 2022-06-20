@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">MyMenu</string>
     <string name="Contador">0</string>
+    <string name="Option1">Opción 1</string>
+    <string name="Option2">Opción 2</string>
+    <string name="Option3">Opción 3</string>
+    <string name="ElementoDeSubmenú">Elemento de Submenú</string>
 </resources>
