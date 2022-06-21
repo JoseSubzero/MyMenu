@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
     }
 
-
+    //onCreatedOptionsMenu solo se ejecuta una vez, cuando se crea el menu
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         super.onCreateOptionsMenu(menu)
         //poner interrogaciones cerradas detras de menu para que no de error
@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
 //        menu?.add(ID_GROUP_BR, ID_BOTONRADIO_2, Menu.NONE, "Opcion 2")
 //        menu?.add(ID_GROUP_BR, ID_BOTONRADIO_3, Menu.NONE, "Opcion 3")
 //            ?.setChecked(true)
+//        menu?.setGroupCheckable(ID_GROUP_BR, true, true)
 //        val sub = menu?.addSubMenu(0,0, Menu.NONE, "Titulo submenú")
 //        val elementoSubMenu = sub?.add(0, ELEMENTOSUBMENU, Menu.NONE, "Elemento submenú")
         //El segundo cero se refiere al identificador del item y el primero se refiere al identificador del grupo
@@ -43,9 +44,15 @@ class MainActivity : AppCompatActivity() {
 
         return true
     }
-
+    //onPrepareOptionsMenu se ejecuta siempre que se llame al menu
+    //Esto nos permite modificar el menu dinamicamente
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
         super.onPrepareOptionsMenu(menu)
+//        var menuItem = menu?.findItem(ID_BOTONRADIO_2)
+//        menuItem?.setTitle("Papafrita")
+//        menuItem = menu?.findItem(ID_BOTONRADIO_3)
+//        menuItem?.setIcon(R.drawable.icons8_spider_32)
+//        menuItem?.setTitle(R.string.app_name)
         cont++
         binding.tvContador.text = cont.toString()
 
@@ -70,14 +77,14 @@ class MainActivity : AppCompatActivity() {
                 return true}
             ELEMENTOSUBMENU -> {Snackbar.make(binding.root, "Elemento seleccionado", Snackbar.LENGTH_LONG).show()
 
+                return true}
+            R.id.itSubOption1 -> {Snackbar.make(binding.root, "Elemento seleccionado", Snackbar.LENGTH_LONG).show()
+
                 return true}//Hay que usar llaves cuando se quieran introducir varias sentencias
         // y usarlas como bloque para lo que se le pida al programa
         }
         return false
     }
 
-    fun onclick(view: View){
-        Snackbar.make(view, "Opción seleccionada", Snackbar.LENGTH_LONG).show()
-    }
 
 }
